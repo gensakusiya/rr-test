@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  color: #404040;
+  background-color: #F5F5F5;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+.layout {
+  max-width: 1312px;
+  min-width: 612px;
+
+  padding: 0 20px;
+}
