@@ -80,7 +80,7 @@ describe('airline reducer', () => {
       ],
     });
 
-    expect(currentState.get('airlines')).toEqual(Set(['все авиакомании', 'S7', 'KLM']));
+    expect(currentState.get('airlines')).toEqual(List(['все авиакомании', 'S7', 'KLM']));
   });
 
   it('should return default airlines item', () => {
@@ -101,7 +101,8 @@ describe('airline reducer', () => {
     });
     const airlines = currentState.get('airlines');
 
-    expect(airlines.toArray()[0]).toEqual('все авиакомании');
+    expect(airlines.get(0)).toEqual('все авиакомании');
+    expect(airlines.get(1)).toEqual('S7');
   });
 
   it('should return new value currentAirline selector', () => {

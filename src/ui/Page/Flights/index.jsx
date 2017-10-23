@@ -24,23 +24,8 @@ class FlightsPage extends Component {
     this.props.dispatch(setFlights());
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { airline } = this.props;
-
-    const prevAirlines = airline.get('airlines');
-    const nextAirlines = nextProps.airline.get('airlines');
-    if (!Immutable.is(prevAirlines, nextAirlines)) {
-      this.airlineOptions = nextAirlines.toArray().map((label, value) => ({
-        label,
-        value,
-      }));
-    }
-  }
-
-  airlineOptions = [];
-
-  handleChangeAirline = ({ value }) => {
-    this.props.dispatch(changeCurrentAirline(value));
+  handleChangeAirline = ({ key }) => {
+    this.props.dispatch(changeCurrentAirline(key));
   };
 
   renderFlights = () => this.props.airline.get('flights').map(flight => (
@@ -56,7 +41,7 @@ class FlightsPage extends Component {
         <h2>Перелёты</h2>
         <div className="flights__filters">
           <Select
-            options={this.airlineOptions}
+            options={airline.get('airlines')}
             value={airline.get('currentAirline')}
             onSelect={this.handleChangeAirline}
           />

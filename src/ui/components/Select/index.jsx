@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
 import './select.css';
 
 export default class Select extends Component {
   static propTypes = {
-    options: PropTypes.array.isRequired,
+    options: PropTypes.instanceOf(List).isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onSelect: PropTypes.func.isRequired,
   };
@@ -30,14 +31,14 @@ export default class Select extends Component {
   }
 
   getLabel = (options, value) => {
-    if (options.length) {
-      const currentOption = options.find(item => item.value === value);
+    if (options.size) {
+      const currentOption = options.get(value);
 
       if (currentOption === null) {
         throw Error(`${value} value is not current range`);
       }
 
-      return currentOption.label;
+      return currentOption;
     }
 
     return null;
@@ -60,13 +61,13 @@ export default class Select extends Component {
     this.changeOpenState();
   };
 
-  renderOption = option => (
+  renderOption = (option, key) => (
     <div
-      key={option.value}
+      key={key}
       className="select__item"
-      onClick={e => this.handleSelect(e, option)}
+      onClick={e => this.handleSelect(e, { option, key })}
     >
-      { option.label }
+      { option }
     </div>
   );
 
@@ -74,7 +75,7 @@ export default class Select extends Component {
     const { options } = this.props;
     const { label, isOpen } = this.state;
 
-    if (!options.length) return null;
+    if (!options.size) return null;
 
     const optionsHtml = options.map(this.renderOption);
     const mainClassName = `select ${isOpen ? 'open' : ''}`;
