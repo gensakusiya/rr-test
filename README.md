@@ -1,12 +1,12 @@
-#React and Redux test application
+## React and Redux test application
 
 Flights select widget
 
-#Run
+## Run
 
 ``yarn install && yarn start`` - for start on localhost:8000
 
-#Scripts section
+## Scripts section
 
 ``yarn install`` - install all dependencies
 
