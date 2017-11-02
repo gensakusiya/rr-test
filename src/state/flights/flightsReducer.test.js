@@ -8,7 +8,7 @@ describe('airline reducer', () => {
     expect(airlineReducer()).toEqual(Map({
       source: List([]),
       flights: List([]),
-      airlines: Set([]),
+      airlines: List([]),
       currentAirline: 0,
     }));
   });
@@ -40,7 +40,7 @@ describe('airline reducer', () => {
       ],
     });
 
-    expect(currentState.get('airlines')).toEqual(Set(['все авиакомании', 'S7', 'KLM']));
+    expect(currentState.get('airlines')).toEqual(List(['все авиакомании', 'S7', 'KLM']));
   });
 
   it('should return the list of uniq airlines', () => {
