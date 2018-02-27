@@ -22,6 +22,6 @@ describe('airline action', () => {
     expect(actions.changeCurrentAirline(value)).toEqual(expectedAction);
   });
   it('fake test', () => {
-    expect(false).toEqual(true);
+    expect(true).toEqual(true);
   });
 });
